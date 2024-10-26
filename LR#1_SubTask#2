@@ -1,0 +1,27 @@
+#OriginalData-----------------
+floppyDisksMemoryCapasity = 1.44
+SheetsQuantity = 100
+LinesQuantity = 50
+LineLiteralsQuantity = 25
+MemorySingleSymbolRequire = 4
+#------------------------------
+OneBookSize = None
+BooksQuantity = None
+
+#Function do convert MB to Bytes
+def MbytesConvert (value):
+    return value * 1024 * 1024
+
+#Function do calculate size of a single book, output result in Bytes
+def oneBookSizeCalculation(sheets,lines,literals,symbolSize):
+    return sheets * lines * literals * symbolSize
+
+#Function do calculate how many books able fit in disks
+def BooksQuantityCalculation(generalCapasity,bookSize):
+    return generalCapasity//bookSize
+
+#mainCode----------------------------
+floppyDisksMemoryCapasity = MbytesConvert(floppyDisksMemoryCapasity)
+OneBookSize = oneBookSizeCalculation(SheetsQuantity,LinesQuantity,LineLiteralsQuantity,MemorySingleSymbolRequire)
+BooksQuantity = BooksQuantityCalculation(floppyDisksMemoryCapasity,OneBookSize)
+print("Количество книг, помещающихся на дискету:",int(BooksQuantity))
